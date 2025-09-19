@@ -1,0 +1,2 @@
+django-graphql-jwt
+graphene-django
