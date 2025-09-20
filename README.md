@@ -239,20 +239,12 @@ mutation {
 * **Rafraîchir un token** :
 
 ```graphql
-mutation RefreshToken($token: String!) {
-  refreshToken(token: $token) {
+mutation {
+  refreshToken(refreshToken: "") {
     token
     payload
     refreshExpiresIn
   }
-}
-```
-
-**Variables GraphQL** :
-
-```json
-{
-  "token": "TON_REFRESH_TOKEN"
 }
 ```
 
