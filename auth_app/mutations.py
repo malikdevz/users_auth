@@ -138,6 +138,30 @@ class ChangePassword(graphene.Mutation):
 		return ChangePassword(is_password_changed=True)
 #----------------------------------------------------------------------------------------------------------------
 
+#Make a teacher an admin- plus de controle du cote de account manager
+class GiveAdminAccess(graphene.Mutation):
+
+	class Arguments:
+		user_username=graphene.String(required=True)
+
+	is_give_access_success=graphene.Boolean()
+
+	@login_required
+	def mutate(root, info, user_username):
+		user=info.context.user
+		if user.is_superuser:#seul un admin  peu accourder les acces admin aux professeur
+			if User.objects.filter(username=user_username).exists():
+				n_user=User.objects.get(username=user_username)
+				n_user.is_superuser=True
+				n_user.save()
+				return GiveAdminAccess(is_give_access_success=True)
+			else:
+				raise GraphQLError("USER_NOT_EXIST")
+		else:
+			raise GraphQLError("OPERATION_DENIED")
+
+
+
 
 
 #Le professeur peu reinitialiser le mot de passe de ses eleves-----------------------------------
@@ -234,32 +258,10 @@ class Mutation(graphene.ObjectType):
 	send_confirm_code=SendConfirmCode.Field()
 	delete_user_account=DeleteUserAccount.Field()
 	admin_delete_account=DeleteAnyAccount.Field()
+	give_admin_access=GiveAdminAccess.Field()
 
 	#Token manager------------------------
 	token_auth = graphql_jwt.ObtainJSONWebToken.Field()#OK
 	verify_token = graphql_jwt.Verify.Field()
 	refresh_token = graphql_jwt.Refresh.Field()
 	#------------------------------
-
-
-	"""
-	{
-    "errors": [
-        {
-            "message": "Signature has expired",
-            "locations": [
-                {
-                    "line": 2,
-                    "column": 5
-                }
-            ],
-            "path": [
-                "verifyToken"
-            ]
-        }
-    ],
-    "data": {
-        "verifyToken": null
-    }
-}
-"""
