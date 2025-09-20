@@ -2,8 +2,11 @@
 # Documentation de l'API ICARTABLE - User Auth Service microservice
 
 Ce microservice sert a  l'authentification des utilisateurs du system icartable,
- il ne s'agit pas du module de gestions de compte utilisateur, ce microservice se concentre sur la gestion de connexion des utilisateur et leurs session d'utilisation. il communique avec les autres micro service du
-  system icartable a travers son API GraphQL. la liste de fonctionnalite et le protocole de communication incluant les requette qu'il est possible de faire et la facon de le faire est documente en bas. Thanks
+il ne s'agit pas du module de gestions de compte utilisateur, 
+ce microservice se concentre sur la gestion de connexion des utilisateur et leurs session d'utilisation. 
+il communique avec les autres micro service du system icartable a travers son API GraphQL. 
+la liste de fonctionnalite et le protocole de communication incluant les requette qu'il est possible de faire
+et la facon de le faire est documente en bas. Thanks
 Cette documentation inclut les paramètres, exemples de requêtes, résultats attendus, erreurs possibles et recommandations pour l'utilisateur.
 
 ---
