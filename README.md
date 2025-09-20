@@ -271,10 +271,3 @@ mutation RefreshToken($token: String!) {
 4. Pour les admins, **vérifier les droits avant de manipuler les comptes d’autres utilisateurs**.
 
 ---
-
-> Cette documentation permet à un développeur ou utilisateur final d’utiliser entièrement le module d’authentification ICARTABLE via l’API GraphQL.
-
-```
-
-Si tu veux, je peux aussi te **générer directement la version HTML avec ce Markdown dans une div et le parser avec `marked.js`** pour que tu puisses l’afficher sur ta page web. Veux‑tu que je fasse ça ?
-```
