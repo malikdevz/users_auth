@@ -160,6 +160,28 @@ class GiveAdminAccess(graphene.Mutation):
 		else:
 			raise GraphQLError("OPERATION_DENIED")
 
+#Revoke admin access
+class RevokeAdminAccess(graphene.Mutation):
+
+	class Arguments:
+		user_username=graphene.String(required=True)
+
+	is_revoke_access_success=graphene.Boolean()
+
+	@login_required
+	def mutate(root, info, user_username):
+		user=info.context.user
+		if user.is_superuser:#seul un admin  peu accourder les acces admin aux professeur
+			if User.objects.filter(username=user_username).exists():
+				n_user=User.objects.get(username=user_username)
+				n_user.is_superuser=False
+				n_user.save()
+				return GiveAdminAccess(is_give_access_success=True)
+			else:
+				raise GraphQLError("USER_NOT_EXIST")
+		else:
+			raise GraphQLError("OPERATION_DENIED")
+
 
 
 
@@ -259,6 +281,7 @@ class Mutation(graphene.ObjectType):
 	delete_user_account=DeleteUserAccount.Field()
 	admin_delete_account=DeleteAnyAccount.Field()
 	give_admin_access=GiveAdminAccess.Field()
+	revoke_admin_access=RevokeAdminAccess.Field()
 
 	#Token manager------------------------
 	token_auth = graphql_jwt.ObtainJSONWebToken.Field()#OK

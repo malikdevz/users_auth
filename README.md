@@ -213,7 +213,24 @@ mutation {
 
 ---
 
-### 10. Authentification et gestion des tokens
+### 10. Retirer les droits admin à un professeur
+
+```graphql
+mutation {
+  revokeAdminAccess(userUsername: "professeur1") {
+    isRevokeAccessSuccess
+  }
+}
+```
+
+**Erreurs possibles** :
+
+* `OPERATION_DENIED` → utilisateur courant n’est pas admin.
+* `USER_NOT_EXIST` → utilisateur inexistant.
+
+---
+
+### 11. Authentification et gestion des tokens
 
 * **Obtenir un token JWT** :
 
