@@ -1,5 +1,3 @@
-Voici une **documentation complète en Markdown** basée sur le nouveau code que tu as fourni. Elle est structurée pour que quelqu’un puisse utiliser ton API même sans le développeur :
-
 ````markdown
 # Documentation de l'API ICARTABLE - User Auth Service
 
