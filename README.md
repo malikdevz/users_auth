@@ -221,6 +221,7 @@ mutation {
 mutation {
   tokenAuth(username: "alice", password: "motdepasse") {
     token
+    refreshToken
     payload
   }
 }
@@ -237,6 +238,7 @@ mutation {
 ```
 
 * **Rafraîchir un token** :
+vous devez fournir le token de refraichissement recu avec le token d'access lors de l'authentification
 
 ```graphql
 mutation {
